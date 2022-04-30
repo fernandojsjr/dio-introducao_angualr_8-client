@@ -8,14 +8,26 @@ import { CourseService } from "./course.service";
 })
 export class CourseListComponent{
 
-  courses: Course[] = [];
+  filteredCourses: Course[] = [];
+  
+  _courses: Course[] = [];
+  _filterBy: string = '';
 
   constructor(private courceService: CourseService){
-    this.courses = courceService.retrievAll();
+    this._courses = courceService.retrievAll();
+    this.filteredCourses = this._courses;
   }
 
   ngOnInit(): void {
       
+  }
+  set filter(value: string){
+    this._filterBy = value;
+    this.filteredCourses = this._courses.filter( (course: Course)  => course.name.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
+  }
+
+  get filter(){
+    return this._filterBy;
   }
 
 }
