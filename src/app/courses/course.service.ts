@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Course } from "./course";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +9,22 @@ export class CourseService {
   retrievAll(): Course[] {
     return COURSES;
   }  
+
+  retrieveById(id: number): Course {
+
+    let course = COURSES.find(courseInterator => courseInterator.id === id);
+
+    return course?course:new Course();
+  }
+
+  save(course: Course): void {
+
+    if(course.id){
+      const index = COURSES.findIndex(c => c.id === course.id);
+      COURSES[index] = course;
+    }
+
+  }
 }
 
 var COURSES: Course[] = [
