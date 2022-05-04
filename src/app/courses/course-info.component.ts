@@ -20,7 +20,10 @@ export class CourseInfoComponent implements OnInit {
     const param = this.activatedRoute.snapshot.paramMap.get('id'); // pode retornar null
 
     this.courseId = param?+param:0;
-    this.course = this.course = this.courseService.retrieveById(this.courseId);
+    this.courseService.retrieveById(this.courseId).subscribe({
+      next: course => this.course = course,
+      error: err => console.log('Error', err)
+    });
     
 
     /*
@@ -32,14 +35,13 @@ export class CourseInfoComponent implements OnInit {
   }
 
   save(): void {
-    /*
     this.courseService.save(this.course).subscribe({
       next: course => console.log('Saved with success', course),
       error: err => console.log('Error', err)
     });
-    */
+    
 
-    this.courseService.save(this.course);
+    // /this.courseService.save(this.course);
   }
 
 }
