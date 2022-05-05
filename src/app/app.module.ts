@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { Error404Component } from './404/error-404.component';
 import { CourseModule } from './courses/course.module'
-import { CourseListComponent } from './courses/course-list.component';
 
 
 
@@ -20,7 +19,6 @@ import { CourseListComponent } from './courses/course-list.component';
   ],
   imports: [
     BrowserModule,
-    //FormsModule,
     HttpClientModule,
     CourseModule,
     RouterModule.forRoot([
